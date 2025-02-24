@@ -37,7 +37,7 @@ function SettleUp({ onBack, onHome }) {
       let creditor = creditors[j];
       let amount = Math.min(Math.abs(debtor[1]), creditor[1]);
 
-      transactionsList.push(`${debtor[0]} owes ${creditor[0]} $${amount.toFixed(2)}`);
+      transactionsList.push(`${debtor[0]} owes ${creditor[0]} ₹${amount.toFixed(2)}`);
 
       debtor[1] += amount;
       creditor[1] -= amount;
