@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Home from "./components/Home";
+import AddMembers from "./components/AddMembers";
+import MemberList from "./components/MemberList";
+import ExpenseSummary from "./components/ExpenseSummary";
+import SettleUp from "./components/SettleUp";
 
 function App() {
+  const [step, setStep] = useState("home");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {step === "home" && <Home onStart={() => setStep("addMembers")} />}
+      {step === "addMembers" && (
+        <AddMembers
+          onDone={() => setStep("memberList")}
+          onBack={() => setStep("home")}
+          onHome={() => setStep("home")}
+        />
+      )}
+      {step === "memberList" && (
+        <MemberList
+          onBack={() => setStep("addMembers")}
+          onHome={() => setStep("home")}
+          onViewSummary={() => setStep("expenseSummary")}
+        />
+      )}
+      {step === "expenseSummary" && (
+        <ExpenseSummary
+          onBack={() => setStep("memberList")}
+          onHome={() => setStep("home")}
+          onSettleUp={() => setStep("settleUp")} // Pass Settle Up button functionality
+        />
+      )}
+      {step === "settleUp" && (
+        <SettleUp
+          onBack={() => setStep("expenseSummary")}
+          onHome={() => setStep("home")}
+        />
+      )}
     </div>
   );
 }
