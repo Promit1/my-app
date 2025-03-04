@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavigationButtons from "./NavigationButtons";
+import ListGroup from 'react-bootstrap/ListGroup';
 
 function SettleUp({ onBack, onHome }) {
   const [transactions, setTransactions] = useState([]);
@@ -12,12 +13,15 @@ function SettleUp({ onBack, onHome }) {
     members.forEach(member => {
       let totalExpense = parseFloat(expenses[member]?.amount || 0);
       let sharedWith = expenses[member]?.selectedMembers || {};
-
+      
       let shareCount = Object.keys(sharedWith).length;
       if (shareCount > 0) {
-        let shareAmount = totalExpense / (shareCount + 1);
+        let shareAmount = totalExpense / shareCount; // ✅ Correct division!
 
-        balances[member] = (balances[member] || 0) - totalExpense + shareAmount;
+        // ✅ Deduct full amount from payer
+        balances[member] = (balances[member] || 0) - totalExpense;
+
+        // ✅ Add correct shares to selected members
         Object.keys(sharedWith).forEach(sharedMember => {
           balances[sharedMember] = (balances[sharedMember] || 0) + shareAmount;
         });
@@ -53,11 +57,11 @@ function SettleUp({ onBack, onHome }) {
     <div>
       <h2>Settle Up</h2>
       {transactions.length > 0 ? (
-        <ul>
+         <ListGroup>
           {transactions.map((transaction, index) => (
-            <li key={index}>{transaction}</li>
+            <ListGroup.Item key={index}>{transaction}</ListGroup.Item>
           ))}
-        </ul>
+        </ListGroup>
       ) : (
         <p>All expenses are already settled!</p>
       )}

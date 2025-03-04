@@ -1,6 +1,8 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import NavigationButtons from "./NavigationButtons";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 function MemberList({ onBack, onHome, onViewSummary }) {
   const members = JSON.parse(sessionStorage.getItem("members")) || [];
@@ -52,7 +54,7 @@ function MemberList({ onBack, onHome, onViewSummary }) {
   return (
     <div>
       <h2>Group Members</h2>
-      <table border="1">
+      <Table striped bordered hover size="sm">
         <thead>
           <tr>
             <th>#</th>
@@ -66,19 +68,19 @@ function MemberList({ onBack, onHome, onViewSummary }) {
               <td>{index + 1}</td>
               <td>{member}</td>
               <td>
-                <button onClick={() => openPopup(member)}>
+                <Button variant="primary" onClick={() => openPopup(member)}>
                   Enter Total Expense of {member}
-                </button>
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
 
       {/* View Expense Summary Button */}
-      <button onClick={onViewSummary} style={{ marginTop: "10px" }}>
+      <Button variant="info" onClick={onViewSummary} style={{ marginTop: "10px" }}>
         View Expense Summary
-      </button>
+      </Button>
 
       <NavigationButtons onBack={onBack} onHome={onHome} />
 
@@ -104,8 +106,8 @@ function MemberList({ onBack, onHome, onViewSummary }) {
                 <label>{member}</label>
               </div>
             ))}
-            <button onClick={handleSubmit}>Submit</button>
-            <button onClick={closePopup}>Close</button>
+            <Button variant="primary" onClick={handleSubmit}>Submit</Button>
+            <Button variant="primary" onClick={closePopup}>Close</Button>
           </div>
         </div>
       )}

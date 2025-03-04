@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.bttns{
+  margin: 3px;
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -32,3 +36,19 @@ code {
   text-align: center;
   min-width: 300px;
 }
+
+.flexMainContainer{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+
+.flexSubContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  
+}
+

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavigationButtons from "./NavigationButtons";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 function ExpenseSummary({ onBack, onHome, onSettleUp }) {
   const [expenses, setExpenses] = useState({});
@@ -15,7 +17,7 @@ function ExpenseSummary({ onBack, onHome, onSettleUp }) {
       {Object.keys(expenses).length === 0 ? (
         <p>No expenses recorded yet.</p>
       ) : (
-        <table border="1">
+        <Table striped bordered hover size="sm">
           <thead>
             <tr>
               <th>Member</th>
@@ -36,11 +38,11 @@ function ExpenseSummary({ onBack, onHome, onSettleUp }) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       )}
 
       <NavigationButtons onBack={onBack} onHome={onHome} />
-      <button onClick={onSettleUp}>Settle Up</button> {/* Settle Up button */}
+      <Button variant="primary" onClick={onSettleUp}>Settle Up</Button> {/* Settle Up button */}
     </div>
   );
 }

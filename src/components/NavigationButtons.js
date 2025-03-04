@@ -1,11 +1,12 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
 
 function NavigationButtons({ onBack, onHome,onSettleUp }) {
   return (
     <div>
-      <button onClick={onBack}>Back</button>
-      <button onClick={onHome}>Home</button>
-      {onSettleUp && <button onClick={onSettleUp}>Settle Up</button>}
+      <Button className="bttns" variant="secondary" onClick={onBack}>Back</Button>
+      <Button className="bttns" variant="secondary" onClick={onHome}>Home</Button>
+      {onSettleUp && <Button variant="info" onClick={onSettleUp}>Settle Up</Button>}
     </div>
   );
 }
