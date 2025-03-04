@@ -5,7 +5,7 @@ function Home({ onStart }) {
   return (
     <div>
       <h1>Welcome to Expence Managar</h1>
-      <Button variant="primary" onClick={onStart}>Add Members</Button>
+      <Button variant="primary" onClick={onStart}>ADD MEMBERS</Button>
     </div>
   );
 }
