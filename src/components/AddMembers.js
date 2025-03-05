@@ -28,7 +28,7 @@ function AddMembers({ onDone, onBack, onHome }) {
   return (
     <Container>
     <div className="md-md-sm-3 flexMainContainer"> 
-      
+    <h1>Add Group Members</h1>
       {/* <input
         type="text"
         placeholder="Enter member name"
